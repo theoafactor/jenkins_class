@@ -9,6 +9,11 @@ pipeline {
 
 
          stage("building"){
+            when{
+                expression{
+                    BRANCH_NAME == "testing"
+                }
+            }
             steps{
                 echo "This is for the building stage"
             }
