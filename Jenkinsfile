@@ -21,7 +21,7 @@ pipeline {
                         sh "ssh -o -i tester.key root@123.222.33.44"
 
                     }catch(Exception err){
-                        currentBuild.currentResult = "FAILURE"
+                        currentBuild.result = "FAILURE"
 
                         throw err
                     }
@@ -40,7 +40,7 @@ pipeline {
       post{
 
             failure{
-                var build_log = currentBuild
+                def build_log = currentBuild
                 emailext subject: "Everything FAILED",
                          body: """
                                 This is the default body. ${env.JOB_NAME} - ${env.BUILD_NUMBER}, 
