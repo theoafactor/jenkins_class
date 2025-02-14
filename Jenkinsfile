@@ -1,6 +1,14 @@
 pipeline {
     agent any
+    tools {
+        nodejs "node18"
+    }
     stages {
+
+        stage("Checkout out"){
+            git "https://github.com/theoafactor/jenkins_class.git"
+        }
+
         stage("starting"){
             steps{
                 echo "This is for the starting stage"
@@ -18,7 +26,7 @@ pipeline {
                 script {
                     try {
 
-                        sh "ssh -o -i tester.key root@123.222.33.44"
+                        sh "npm run test | tee build.log"
 
                     }catch(Exception err){
                         currentBuild.result = "FAILURE"
@@ -41,7 +49,8 @@ pipeline {
             failure{
                 script {
                     //def build_log = currentBuild.rawBuild.getLog(200).join("\n")
-                    def build_log = manager.build.log
+                    // def build_log = manager.build.log
+                    def build_log = readFile("build.log")
                     emailext subject: "Everything FAILED",
                             body: """
                                     This is the default body. ${env.JOB_NAME} - ${env.BUILD_NUMBER}, 
