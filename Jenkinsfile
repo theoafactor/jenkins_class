@@ -15,7 +15,9 @@ pipeline {
                 }
             }
             steps{
-                echo "This is for the building stage for testing branch "
+                script {
+                    ssh -i 'tester.key' "root@123.222.33.44" 
+                }
             }
         }
 
@@ -30,8 +32,13 @@ pipeline {
       post{
 
             failure{
-                emailext subject: "Everything works fine from here",
-                         body: "This is the default body",
+                emailext subject: "Everything FAILED",
+                         body: """
+                                This is the default body. ${env.JOB_NAME} - ${env.BUILD_NUMBER}, 
+                                ${env.BUILD_URL}
+                                ----------------
+                                ${env.BUILD_LOG}
+                                """,
                          to: "theoafactor@gmail.com"
                 
             }
