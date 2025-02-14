@@ -16,7 +16,7 @@ pipeline {
             }
             steps{
                 script {
-                    ssh -i 'tester.key' "root@123.222.33.44" 
+                    sh "ssh -i tester.key root@123.222.33.44"
                 }
             }
         }
