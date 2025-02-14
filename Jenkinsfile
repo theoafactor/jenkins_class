@@ -38,17 +38,19 @@ pipeline {
     }
 
       post{
-
             failure{
-                def build_log = currentBuild
-                emailext subject: "Everything FAILED",
-                         body: """
-                                This is the default body. ${env.JOB_NAME} - ${env.BUILD_NUMBER}, 
-                                ${env.BUILD_URL}
-                                ----------------
-                                ${build_log}
-                                """,
-                         to: "theoafactor@gmail.com"
+                script {
+                    def build_log = currentBuild
+                    emailext subject: "Everything FAILED",
+                            body: """
+                                    This is the default body. ${env.JOB_NAME} - ${env.BUILD_NUMBER}, 
+                                    ${env.BUILD_URL}
+                                    ----------------
+                                    ${build_log}
+                                    """,
+                            to: "theoafactor@gmail.com"
+
+                }
                 
             }
 
