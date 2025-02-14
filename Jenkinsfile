@@ -15,13 +15,31 @@ pipeline {
                 }
             }
             steps{
-                echo "This is for the building stage for testing branch"
+                echo "This is for the building stage for testing branch "
             }
         }
 
          stage("production"){
             steps{
                 echo "This is for the prduction stage"
+            }
+        }
+
+
+        post{
+
+            failure{
+                emailext subject: "Everything works fine from here"
+                         body: "This is the default body"
+                         to: "theoafactor@gmail.com"
+                
+            }
+
+             success{
+                emailext subject: "Everything works fine from here"
+                         body: "This is the default body"
+                         to: "theoafactor@gmail.com"
+                
             }
         }
     }
