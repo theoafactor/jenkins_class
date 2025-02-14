@@ -25,8 +25,9 @@ pipeline {
             }
         }
 
+    }
 
-        post{
+      post{
 
             failure{
                 emailext subject: "Everything works fine from here"
@@ -42,5 +43,4 @@ pipeline {
                 
             }
         }
-    }
 }
