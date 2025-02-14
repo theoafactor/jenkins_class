@@ -21,7 +21,7 @@ pipeline {
                         sh "ssh -o -i tester.key root@123.222.33.44"
 
                     }catch(Exception err){
-                        currentBuild.result = "FAILURE"
+                        currentBuild.result = ${build_log}
 
                         throw err
                     }
