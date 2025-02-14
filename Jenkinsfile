@@ -40,7 +40,7 @@ pipeline {
       post{
 
             failure{
-                def build_log = currentBuild
+                var build_log = currentBuild
                 emailext subject: "Everything FAILED",
                          body: """
                                 This is the default body. ${env.JOB_NAME} - ${env.BUILD_NUMBER}, 
