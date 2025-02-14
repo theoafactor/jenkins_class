@@ -37,7 +37,7 @@ pipeline {
                                 This is the default body. ${env.JOB_NAME} - ${env.BUILD_NUMBER}, 
                                 ${env.BUILD_URL}
                                 ----------------
-                                ${env.BUILD_LOG}
+                                ${BUILD_LOG}
                                 """,
                          to: "theoafactor@gmail.com"
                 
@@ -49,7 +49,7 @@ pipeline {
                                 This is the default body. ${env.JOB_NAME} - ${env.BUILD_NUMBER}, 
                                 ${env.BUILD_URL}
                                 ----------------
-                                ${env.BUILD_LOG}
+                                ${BUILD_LOG}
                                 """,
                          to: "theoafactor@gmail.com"
                 
