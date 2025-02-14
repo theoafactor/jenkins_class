@@ -38,7 +38,7 @@ pipeline {
 
              success{
                 emailext subject: "Everything works fine from here",
-                         body: "This is the default body",
+                         body: "This is the default body. ${env.JOB_NAME} - ${env.BUILD_NUMBER}",
                          to: "theoafactor@gmail.com"
                 
             }
