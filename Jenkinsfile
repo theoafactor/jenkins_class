@@ -30,15 +30,15 @@ pipeline {
       post{
 
             failure{
-                emailext subject: "Everything works fine from here"
-                         body: "This is the default body"
+                emailext subject: "Everything works fine from here",
+                         body: "This is the default body",
                          to: "theoafactor@gmail.com"
                 
             }
 
              success{
-                emailext subject: "Everything works fine from here"
-                         body: "This is the default body"
+                emailext subject: "Everything works fine from here",
+                         body: "This is the default body",
                          to: "theoafactor@gmail.com"
                 
             }
