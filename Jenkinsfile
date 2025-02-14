@@ -16,7 +16,15 @@ pipeline {
             }
             steps{
                 script {
-                    sh "ssh -o -i tester.key root@123.222.33.44"
+                    try {
+
+                        sh "ssh -o -i tester.key root@123.222.33.44"
+
+                    }catch(Exception err){
+                        currentBuild.currentResult = "FAILURE"
+
+                        throw err
+                    }
                 }
             }
         }
@@ -32,12 +40,13 @@ pipeline {
       post{
 
             failure{
+                def build_log = currentBuild
                 emailext subject: "Everything FAILED",
                          body: """
                                 This is the default body. ${env.JOB_NAME} - ${env.BUILD_NUMBER}, 
                                 ${env.BUILD_URL}
                                 ----------------
-                              
+                                ${build_log}
                                 """,
                          to: "theoafactor@gmail.com"
                 
