@@ -28,11 +28,11 @@ pipeline {
                 script {
                     try {
 
-                        sh "npm run test | tee build.log"
+                        sh "npm run test | tee builder.log"
 
                     }catch(Exception err){
                         currentBuild.result = "FAILURE"
-                        sh "echo ${err} | tee build.log"
+                        sh "echo ${err} | tee builder.log"
                         throw err
                     }
                 }
@@ -52,7 +52,7 @@ pipeline {
                 script {
                     //def build_log = currentBuild.rawBuild.getLog(200).join("\n")
                     // def build_log = manager.build.log
-                    def build_log = readFile("build.log")
+                    def build_log = readFile("builder.log")
                     emailext subject: "Everything FAILED",
                             body: """
                                     This is the default body. ${env.JOB_NAME} - ${env.BUILD_NUMBER}, 
@@ -69,7 +69,7 @@ pipeline {
              success{
 
                     script {
-                        def build_log = readFile("build.log")
+                        def build_log = readFile("builder.log")
                         emailext subject: "Everything works fine from here",
                         body: """
                                 This is the default body. ${env.JOB_NAME} - ${env.BUILD_NUMBER}, 
