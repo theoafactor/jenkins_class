@@ -6,7 +6,9 @@ pipeline {
     stages {
 
         stage("Checkout out"){
-            git "https://github.com/theoafactor/jenkins_class.git"
+            steps{
+                git "https://github.com/theoafactor/jenkins_class.git"
+            }
         }
 
         stage("starting"){
