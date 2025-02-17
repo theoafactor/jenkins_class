@@ -67,15 +67,20 @@ pipeline {
             }
 
              success{
-                def build_log = readFile("build.log")
-                emailext subject: "Everything works fine from here",
-                         body: """
+
+                    script {
+                        def build_log = readFile("build.log")
+                        emailext subject: "Everything works fine from here",
+                        body: """
                                 This is the default body. ${env.JOB_NAME} - ${env.BUILD_NUMBER}, 
                                 ${env.BUILD_URL}
                                 ----------------
                                 ${build_log}
                                 """,
-                         to: "theoafactor@gmail.com"
+                        to: "theoafactor@gmail.com"
+
+                    }
+               
                 
             }
         }
