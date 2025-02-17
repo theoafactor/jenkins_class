@@ -7,7 +7,7 @@ pipeline {
 
         stage("Checkout out"){
             steps{
-                git "https://github.com/theoafactor/jenkins_class.git"
+                git branch: "testing" url: "https://github.com/theoafactor/jenkins_class.git"
             }
         }
 
@@ -25,7 +25,7 @@ pipeline {
                 }
             }
             steps{
-                sh "npm init -y"
+        
                 script {
                     try {
 
