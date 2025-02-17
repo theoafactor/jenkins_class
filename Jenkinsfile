@@ -25,6 +25,7 @@ pipeline {
                 }
             }
             steps{
+                sh "npm init -y"
                 script {
                     try {
 
