@@ -16,6 +16,8 @@ pipeline {
             }
             steps{
                 echo "This is for the building stage"
+                def BUILD_NUMBER = "${env.BUILD_NUMBER}"
+               
             }
         }
 
