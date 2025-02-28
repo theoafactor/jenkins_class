@@ -27,6 +27,10 @@ pipeline {
          stage("production"){
             steps{
                 echo "This is for the prduction stage"
+                script {
+                    def BUILD_NUMBER = "${env.BUILD_NUMBER}"
+                    sh "echo $BUILD_NUMBER"
+                }
             }
         }
     }
